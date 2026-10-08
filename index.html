@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Calculadora gratis de impuestos 2026 para trabajadores independientes en Utah / Free 2026 Utah self-employed tax calculator">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Calculadora de Impuestos Utah 2026 | Ipiña Tax</title><link rel="canonical" href="https://calculadora.ipinatax.com/">
+</head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one ledger column, form on the left and a "set aside" receipt on the right; stacks on phones */
+:root{
+  --bg:#F4FAF6; --paper:#FFFFFF; --ink:#13262B; --muted:#56686C; --line:#D5DDDA;
+  --brand:#06291C; --brand-ink:#FFFFFF; --mark:#FFD23F; --mark-ink:#13262B; --soft:#EAF7F0;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Public Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1719; --paper:#152225; --ink:#E6EEEC; --muted:#9AAEB1; --line:#2A3B3F;
+  --brand:#6FD3A0; --brand-ink:#0E1719; --mark:#F5C84C; --mark-ink:#13262B; --soft:#1C2D31; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1719; --paper:#152225; --ink:#E6EEEC; --muted:#9AAEB1; --line:#2A3B3F;
+  --brand:#6FD3A0; --brand-ink:#0E1719; --mark:#F5C84C; --mark-ink:#13262B; --soft:#1C2D31; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:grid;gap:24px}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-family:var(--display);font-weight:800;font-size:1.1rem;letter-spacing:.01em}
+.brand span{color:var(--brand)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{border:0;background:transparent;color:var(--ink);font:600 .85rem var(--body);padding:6px 14px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.08;margin:0;text-wrap:balance;max-width:20ch}
+h1 mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;padding:0 .1em}
+.lede{color:var(--muted);margin:8px 0 0;max-width:60ch}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:760px){.grid{grid-template-columns:minmax(0,1fr)}}
+form{display:grid;gap:16px}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
+legend,label{font-weight:600;font-size:.92rem}
+.hint{color:var(--muted);font-size:.82rem;font-weight:400}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg label{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:8px 12px;cursor:pointer;font-weight:500}
+.seg input{accent-color:var(--brand)}
+.field{display:grid;gap:6px}
+.money{position:relative}
+.money::before{content:"$";position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-family:var(--mono)}
+input[type=number]{width:100%;font:500 1.05rem var(--mono);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 12px 10px 26px;font-variant-numeric:tabular-nums}
+input.plain{padding-left:12px}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
+.receipt{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:16px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+@media (max-width:760px){.receipt{position:static}}
+.eyebrow{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.big{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,7vw,3.2rem);line-height:1;font-variant-numeric:tabular-nums}
+.pct{display:inline-block;background:var(--mark);color:var(--mark-ink);font-weight:600;border-radius:6px;padding:2px 8px;font-size:.9rem}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+td{padding:7px 0;border-bottom:1px dashed var(--line);vertical-align:top}
+td.n{text-align:right;font-family:var(--mono);white-space:nowrap;padding-left:12px}
+tr.total td{border-bottom:0;border-top:2px solid var(--ink);font-weight:600;padding-top:10px}
+.quarters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+@media (max-width:420px){.quarters{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.q{background:var(--soft);border-radius:8px;padding:8px 10px;display:grid;gap:2px}
+.q b{font-family:var(--mono);font-size:.95rem}
+.q small{color:var(--muted);font-size:.75rem}
+.q.past{opacity:.55}
+.cta{background:var(--brand);color:var(--brand-ink);border-radius:14px;padding:20px;display:grid;gap:12px}
+.cta h2{font-family:var(--display);font-weight:800;font-size:1.35rem;margin:0;text-wrap:balance}
+.cta p{margin:0;opacity:.92}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;border-radius:999px;padding:10px 16px;background:var(--mark);color:var(--mark-ink)}
+.btn.ghost{background:transparent;color:var(--brand-ink);border:1.5px solid currentColor}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.prod{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:6px;text-decoration:none;color:var(--ink)}
+.prod b{font-family:var(--display);font-size:1.05rem}
+.prod .price{font-family:var(--mono);color:var(--brand)}
+.fine{color:var(--muted);font-size:.8rem;max-width:80ch}
+.fine p{margin:0 0 6px}
+@media (prefers-reduced-motion:no-preference){.big{transition:color .2s}}
+</style>
+
+<div class="wrap">
+  <header>
+    <a href="https://ipinatax.com/" style="text-decoration:none;color:inherit"><div class="brand" id="brandName">Ipiña <span>Tax</span></div></a>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" id="lang-es" aria-pressed="true">Español</button>
+      <button type="button" id="lang-en" aria-pressed="false">English</button>
+    </div>
+  </header>
+
+  <section>
+    <h1 data-i18n="h1">¿Cuánto debo <mark>apartar para impuestos</mark> en 2026?</h1>
+    <p class="lede" data-i18n="lede">Para trabajadores independientes en Utah: 1099, Uber y Lyft, DoorDash, limpieza, construcción, freelancers. Pon tus números y ve un estimado del impuesto federal, de autoempleo y de Utah, y cuánto pagar cada trimestre.</p>
+  </section>
+
+  <div class="grid">
+    <form id="calc" autocomplete="off">
+      <fieldset>
+        <legend data-i18n="status">Estado civil para la declaración</legend>
+        <div class="seg">
+          <label><input type="radio" name="status" id="st-single" value="single" checked> <span data-i18n="single">Soltero</span></label>
+          <label><input type="radio" name="status" id="st-mfj" value="mfj"> <span data-i18n="mfj">Casado, declaración conjunta</span></label>
+          <label><input type="radio" name="status" id="st-hoh" value="hoh"> <span data-i18n="hoh">Cabeza de familia</span></label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="gross"><span data-i18n="gross">Ingresos del año como independiente</span> <span class="hint" data-i18n="grossH">(todo lo que cobras: 1099-NEC, 1099-K, efectivo)</span></label>
+        <div class="money"><input type="number" id="gross" min="0" step="100" value="55000" inputmode="decimal"></div>
+      </div>
+      <div class="field">
+        <label for="exp"><span data-i18n="exp">Gastos del negocio</span> <span class="hint" data-i18n="expH">(herramientas, teléfono, materiales, seguros; sin millaje)</span></label>
+        <div class="money"><input type="number" id="exp" min="0" step="100" value="6000" inputmode="decimal"></div>
+      </div>
+      <div class="field">
+        <label for="miles"><span data-i18n="miles">Millas de trabajo manejadas</span> <span class="hint" data-i18n="milesH">(se deducen a 72.5¢ por milla en 2026)</span></label>
+        <input type="number" id="miles" class="plain" min="0" step="100" value="8000" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label for="w2"><span data-i18n="w2">Salario de otro trabajo (W-2)</span> <span class="hint" data-i18n="w2H">(opcional; 0 si no tienes)</span></label>
+        <div class="money"><input type="number" id="w2" min="0" step="100" value="0" inputmode="decimal"></div>
+      </div>
+      <div class="field">
+        <label for="wh"><span data-i18n="wh">Impuestos ya retenidos o pagados este año</span> <span class="hint" data-i18n="whH">(retención del W-2 y pagos trimestrales hechos)</span></label>
+        <div class="money"><input type="number" id="wh" min="0" step="100" value="0" inputmode="decimal"></div>
+      </div>
+      <p class="fine" data-i18n="sample">Los números de arriba son un ejemplo. Cámbialos por los tuyos; el resultado se actualiza solo.</p>
+    </form>
+
+    <aside class="receipt" aria-live="polite">
+      <div>
+        <div class="eyebrow" data-i18n="rTitle">Impuestos estimados 2026</div>
+        <div class="big" id="total">$0</div>
+        <p style="margin:6px 0 0"><span data-i18n="rSave">Aparta</span> <span class="pct" id="pct">0%</span> <span data-i18n="rSave2">de cada pago que recibas.</span></p>
+      </div>
+      <table>
+        <tr><td data-i18n="lNet">Ganancia neta del negocio</td><td class="n" id="o-net"></td></tr>
+        <tr><td data-i18n="lSe">Impuesto de autoempleo (Seguro Social y Medicare)</td><td class="n" id="o-se"></td></tr>
+        <tr><td data-i18n="lFed">Impuesto federal sobre la renta</td><td class="n" id="o-fed"></td></tr>
+        <tr><td data-i18n="lUt">Impuesto de Utah (4.45%)</td><td class="n" id="o-ut"></td></tr>
+        <tr><td data-i18n="lPaid">Menos lo ya pagado</td><td class="n" id="o-paid"></td></tr>
+        <tr class="total"><td data-i18n="lDue">Falta por pagar</td><td class="n" id="o-due"></td></tr>
+      </table>
+      <div>
+        <div class="eyebrow" style="margin-bottom:8px" data-i18n="qTitle">Pagos trimestrales al IRS (Form 1040-ES)</div>
+        <div class="quarters" id="quarters"></div>
+      </div>
+      <p class="fine" style="margin:0" data-i18n="utNote">Utah no pide pagos trimestrales, pero para evitar multa paga al menos el 90% del impuesto de Utah antes del 15 de abril de 2027.</p>
+    </aside>
+  </div>
+
+  <section class="cta">
+    <h2 data-i18n="ctaH">¿Quieres que un profesional revise tus números?</h2>
+    <p data-i18n="ctaP">Te ayudo a encontrar deducciones que se te escapan, a calcular tus pagos trimestrales y a preparar tu declaración federal y de Utah.</p>
+    <div class="btns">
+      <a class="btn" id="siteBtn" href="https://ipinatax.com/services/" target="_blank" rel="noopener" data-i18n="siteBtn">Ver mis servicios</a>
+      <a class="btn ghost" id="waBtn" href="#" target="_blank" rel="noopener" data-i18n="ctaBtn">Escríbeme por WhatsApp</a>
+      <a class="btn ghost" id="freeBtn" href="#" target="_blank" rel="noopener" data-i18n="freeBtn">Descarga gratis la lista de documentos</a>
+    </div>
+    <p class="fine" style="color:inherit;opacity:.85" id="contactLine"></p>
+  </section>
+
+  <section style="display:grid;gap:12px">
+    <h2 style="font-family:var(--display);margin:0;font-size:1.3rem" data-i18n="prodH">Lleva tus números todo el año</h2>
+    <div class="products" id="products"></div>
+  </section>
+
+  <footer class="fine">
+    <p data-i18n="disc1">Este es un estimado para planificar, no una asesoría fiscal. Usa la deducción estándar de 2026, la deducción QBI simplificada, el tope del Seguro Social de $184,500 y la tasa de Utah de 4.45% con un crédito del contribuyente aproximado. No incluye créditos por hijos, el impuesto adicional de Medicare, ni otros ingresos o deducciones.</p>
+    <p data-i18n="disc2">Confirma las cifras con el IRS (irs.gov) y la Utah State Tax Commission (tax.utah.gov) o con un preparador de impuestos.</p>
+  </footer>
+</div>
+
+<script>
+/* ===== EDITA AQUÍ / EDIT HERE ===== */
+const CONFIG = {
+  business: "Ipiña Tax",
+  site: "https://ipinatax.com/services/",
+  whatsapp: "",          // solo números con código de país, ej. "18015551234"
+  email: "francisco@ipinatax.com",
+  freeChecklistES: "https://payhip.com/b/QZyMj",
+  freeChecklistEN: "https://payhip.com/b/C3X2G",
+  products: [            // pon el enlace de Payhip/Gumroad de cada producto en "url"
+    {es:"Control de Impuestos para Independientes (Utah)", en:"Self-Employed Tax Tracker (Utah)", price:"$12", url:"https://payhip.com/b/Cr9U4", urlEn:"https://payhip.com/b/z0YSR"},
+    {es:"Registro de Millaje para Choferes 2026", en:"Driver Mileage Log 2026", price:"$7", url:"https://payhip.com/b/lUxkj", urlEn:"https://payhip.com/b/Ssu1J"},
+    {es:"Control de Ingresos, Gastos e Impuestos", en:"Income, Expense & Tax Tracker", price:"$9", url:"https://payhip.com/b/eYDqV", urlEn:"https://payhip.com/b/eYDqV"}
+  ]
+};
+/* ================================== */
+
+const TAX = {
+  mileage: 0.725, ssBase: 184500, utRate: 0.0445,
+  std: {single:16100, mfj:32200, hoh:24150},
+  qbiLimit: {single:201750, mfj:403500, hoh:201750},
+  utBase: {single:18213, mfj:36426, hoh:27320},
+  brackets: {
+    single:[[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[640600,.35],[Infinity,.37]],
+    mfj:[[24800,.10],[100800,.12],[211400,.22],[403550,.24],[512450,.32],[768700,.35],[Infinity,.37]],
+    hoh:[[17700,.10],[67450,.12],[105700,.22],[201750,.24],[256200,.32],[640600,.35],[Infinity,.37]]
+  },
+  quarters: [["2026-04-15","15 abr 2026","Apr 15, 2026"],["2026-06-15","15 jun 2026","Jun 15, 2026"],["2026-09-15","15 sep 2026","Sep 15, 2026"],["2027-01-15","15 ene 2027","Jan 15, 2027"]]
+};
+
+function bracketTax(income, br){
+  let tax=0, prev=0;
+  for(const [top,rate] of br){ if(income<=prev) break; tax += (Math.min(income,top)-prev)*rate; prev=top; }
+  return tax;
+}
+function estimate({status,gross,exp,miles,w2,paid}){
+  const net = Math.max(0, gross - exp - miles*TAX.mileage);
+  const seBase = net*0.9235;
+  const ss = Math.max(0, Math.min(seBase, TAX.ssBase - w2))*0.124;
+  const se = seBase >= 400 ? ss + seBase*0.029 : 0;
+  const agi = net + w2 - se/2;
+  const preQbi = Math.max(0, agi - TAX.std[status]);
+  const qbi = agi <= TAX.qbiLimit[status] ? Math.min(0.2*Math.max(0, net - se/2), 0.2*preQbi) : 0;
+  const taxable = Math.max(0, preQbi - qbi);
+  const fed = bracketTax(taxable, TAX.brackets[status]);
+  const credit = Math.max(0, 0.06*TAX.std[status] - 0.013*Math.max(0, agi - TAX.utBase[status]));
+  const ut = Math.max(0, TAX.utRate*Math.max(0,agi) - credit);
+  const total = se + fed + ut;
+  return {net, se, fed, ut, total, due: Math.max(0,total-paid), pct: gross>0 ? total/gross : 0};
+}
+
+const T = {
+  es:{h1:'¿Cuánto debo <mark>apartar para impuestos</mark> en 2026?',
+    lede:'Para trabajadores independientes en Utah: 1099, Uber y Lyft, DoorDash, limpieza, construcción, freelancers. Pon tus números y ve un estimado del impuesto federal, de autoempleo y de Utah, y cuánto pagar cada trimestre.',
+    status:'Estado civil para la declaración',single:'Soltero',mfj:'Casado, declaración conjunta',hoh:'Cabeza de familia',
+    gross:'Ingresos del año como independiente',grossH:'(todo lo que cobras: 1099-NEC, 1099-K, efectivo)',
+    exp:'Gastos del negocio',expH:'(herramientas, teléfono, materiales, seguros; sin millaje)',
+    miles:'Millas de trabajo manejadas',milesH:'(se deducen a 72.5¢ por milla en 2026)',
+    w2:'Salario de otro trabajo (W-2)',w2H:'(opcional; 0 si no tienes)',
+    wh:'Impuestos ya retenidos o pagados este año',whH:'(retención del W-2 y pagos trimestrales hechos)',
+    sample:'Los números de arriba son un ejemplo. Cámbialos por los tuyos; el resultado se actualiza solo.',
+    rTitle:'Impuestos estimados 2026',rSave:'Aparta',rSave2:'de cada pago que recibas.',
+    lNet:'Ganancia neta del negocio',lSe:'Impuesto de autoempleo (Seguro Social y Medicare)',lFed:'Impuesto federal sobre la renta',lUt:'Impuesto de Utah (4.45%)',lPaid:'Menos lo ya pagado',lDue:'Falta por pagar',
+    qTitle:'Pagos trimestrales al IRS (Form 1040-ES)',qPast:'vencido',
+    utNote:'Utah no pide pagos trimestrales, pero para evitar multa paga al menos el 90% del impuesto de Utah antes del 15 de abril de 2027.',
+    ctaH:'¿Quieres que un profesional revise tus números?',ctaP:'Te ayudo a encontrar deducciones que se te escapan, a calcular tus pagos trimestrales y a preparar tu declaración federal y de Utah.',
+    ctaBtn:'Escríbeme por WhatsApp',siteBtn:'Ver mis servicios',freeBtn:'Descarga gratis la lista de documentos',prodH:'Lleva tus números todo el año',buy:'Ver plantilla',soon:'Muy pronto',
+    contact:'WhatsApp: {w} · Correo: {e}',
+    disc1:'Este es un estimado para planificar, no una asesoría fiscal. Usa la deducción estándar de 2026, la deducción QBI simplificada, el tope del Seguro Social de $184,500 y la tasa de Utah de 4.45% con un crédito del contribuyente aproximado. No incluye créditos por hijos, el impuesto adicional de Medicare, ni otros ingresos o deducciones.',
+    disc2:'Confirma las cifras con el IRS (irs.gov) y la Utah State Tax Commission (tax.utah.gov) o con un preparador de impuestos.',
+    wa:'Hola, usé tu calculadora de impuestos y quiero ayuda con mis números.'},
+  en:{h1:'How much should I <mark>set aside for taxes</mark> in 2026?',
+    lede:'For self-employed workers in Utah: 1099 contractors, Uber and Lyft, DoorDash, cleaning, construction, freelancers. Enter your numbers to estimate federal, self-employment and Utah tax, and what to pay each quarter.',
+    status:'Filing status',single:'Single',mfj:'Married filing jointly',hoh:'Head of household',
+    gross:'Self-employment income for the year',grossH:'(everything you collect: 1099-NEC, 1099-K, cash)',
+    exp:'Business expenses',expH:'(tools, phone, supplies, insurance; not mileage)',
+    miles:'Business miles driven',milesH:'(deducted at 72.5¢ per mile in 2026)',
+    w2:'Wages from another job (W-2)',w2H:'(optional; 0 if none)',
+    wh:'Tax already withheld or paid this year',whH:'(W-2 withholding and estimated payments made)',
+    sample:'The numbers above are an example. Replace them with yours; the result updates as you type.',
+    rTitle:'Estimated 2026 taxes',rSave:'Set aside',rSave2:'of every payment you receive.',
+    lNet:'Net business profit',lSe:'Self-employment tax (Social Security and Medicare)',lFed:'Federal income tax',lUt:'Utah income tax (4.45%)',lPaid:'Less amount already paid',lDue:'Still owed',
+    qTitle:'Quarterly IRS payments (Form 1040-ES)',qPast:'past due',
+    utNote:'Utah does not require quarterly payments, but to avoid a penalty pay at least 90% of your Utah tax by April 15, 2027.',
+    ctaH:'Want a tax pro to check your numbers?',ctaP:'I help you find deductions you are missing, figure out your quarterly payments, and prepare your federal and Utah returns.',
+    ctaBtn:'Message me on WhatsApp',siteBtn:'See my services',freeBtn:'Get the free tax document checklist',prodH:'Track your numbers all year',buy:'See template',soon:'Coming soon',
+    contact:'WhatsApp: {w} · Email: {e}',
+    disc1:'This is a planning estimate, not tax advice. It uses the 2026 standard deduction, a simplified QBI deduction, the $184,500 Social Security wage base, and Utah\'s 4.45% rate with an approximate taxpayer credit. It leaves out child credits, the Additional Medicare Tax, and other income or deductions.',
+    disc2:'Confirm the figures with the IRS (irs.gov) and the Utah State Tax Commission (tax.utah.gov), or with a tax preparer.',
+    wa:'Hi, I used your tax calculator and would like help with my numbers.'}
+};
+
+let lang = 'es';
+try { const s = localStorage.getItem('calc-lang'); if (s === 'en' || s === 'es') lang = s; } catch(e) {}
+const h = (location.hash||'').slice(1).toLowerCase();
+if (h==='es' || h==='en') lang = h;
+else if (/^en/i.test(navigator.language||'') && !(()=>{try{return localStorage.getItem('calc-lang')}catch(e){return null}})()) lang='en';
+
+const $ = id => document.getElementById(id);
+const fmt = n => (n<0?'-':'') + '$' + Math.round(Math.abs(n)).toLocaleString('en-US');
+const num = id => Math.max(0, parseFloat($(id).value) || 0);
+
+function render(){
+  const status = document.querySelector('input[name=status]:checked').value;
+  const r = estimate({status, gross:num('gross'), exp:num('exp'), miles:num('miles'), w2:num('w2'), paid:num('wh')});
+  $('total').textContent = fmt(r.total);
+  $('pct').textContent = Math.round(r.pct*100) + '%';
+  $('o-net').textContent = fmt(r.net); $('o-se').textContent = fmt(r.se);
+  $('o-fed').textContent = fmt(r.fed); $('o-ut').textContent = fmt(r.ut);
+  $('o-paid').textContent = fmt(-num('wh')); $('o-due').textContent = fmt(r.due);
+  const fedDue = Math.max(0, r.se + r.fed - num('wh'));
+  const today = new Date().toISOString().slice(0,10);
+  const open = TAX.quarters.filter(q => q[0] >= today).length || 1;
+  $('quarters').innerHTML = TAX.quarters.map(q => {
+    const past = q[0] < today;
+    const amt = past ? T[lang].qPast : fmt(fedDue/open);
+    return `<div class="q${past?' past':''}"><small>${lang==='es'?q[1]:q[2]}</small><b>${amt}</b></div>`;
+  }).join('');
+}
+
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const v = T[lang][el.dataset.i18n]; if (v) el.innerHTML = v; });
+  $('lang-es').setAttribute('aria-pressed', lang==='es'); $('lang-en').setAttribute('aria-pressed', lang==='en');
+  const wa = CONFIG.whatsapp.replace(/\D/g,'');
+  $('waBtn').hidden = !wa;
+  if (wa) $('waBtn').href = 'https://wa.me/' + wa + '?text=' + encodeURIComponent(T[lang].wa);
+  $('siteBtn').href = CONFIG.site;
+  $('freeBtn').href = lang==='es' ? CONFIG.freeChecklistES : CONFIG.freeChecklistEN;
+  const parts = [];
+  if (wa) parts.push('WhatsApp: +' + wa);
+  if (CONFIG.email) parts.push((lang==='es'?'Correo: ':'Email: ') + CONFIG.email);
+  $('contactLine').textContent = parts.join(' · ');
+  $('contactLine').hidden = !parts.length;
+  $('products').innerHTML = CONFIG.products.map(p => {
+    const name = lang==='es' ? p.es : p.en; const url = lang==='es' ? p.url : (p.urlEn || p.url);
+    const tag = url ? `<a class="prod" href="${url}" target="_blank" rel="noopener">` : '<div class="prod">';
+    const end = url ? '</a>' : '</div>';
+    return `${tag}<b>${name}</b><span class="price">${p.price}</span><span class="hint">${url ? T[lang].buy + ' →' : T[lang].soon}</span>${end}`;
+  }).join('');
+  render();
+}
+
+$('lang-es').onclick = () => { lang='es'; try{localStorage.setItem('calc-lang','es')}catch(e){} applyLang(); };
+$('lang-en').onclick = () => { lang='en'; try{localStorage.setItem('calc-lang','en')}catch(e){} applyLang(); };
+$('calc').addEventListener('input', render);
+$('calc').addEventListener('submit', e => e.preventDefault());
+$('brandName').innerHTML = CONFIG.business.replace(/(\S+)$/, '<span>$1</span>');
+applyLang();
+</script>
+
+</body></html>

@@ -4,77 +4,74 @@
 <title>Calculadora de Impuestos Utah 2026 | Ipiña Tax</title><link rel="canonical" href="https://calculadora.ipinatax.com/">
 </head><body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap">
 <style>
-/* Layout: one ledger column, form on the left and a "set aside" receipt on the right; stacks on phones */
+/* Ipiña Tax brand: green #0A7D55, dark green #06291C, yellow #FFD23F, mint #EAF7F0 */
 :root{
-  --bg:#F4FAF6; --paper:#FFFFFF; --ink:#13262B; --muted:#56686C; --line:#D5DDDA;
-  --brand:#06291C; --brand-ink:#FFFFFF; --mark:#FFD23F; --mark-ink:#13262B; --soft:#EAF7F0;
-  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
-  --body:"Public Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --bg:#FFFFFF; --paper:#FFFFFF; --ink:#06291C; --muted:#3D5A4D; --line:#CFEBDD;
+  --brand:#0A7D55; --dark:#06291C; --mark:#FFD23F; --soft:#EAF7F0; --hero-ink:#E3F5EC;
+  --font:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0E1719; --paper:#152225; --ink:#E6EEEC; --muted:#9AAEB1; --line:#2A3B3F;
-  --brand:#6FD3A0; --brand-ink:#0E1719; --mark:#F5C84C; --mark-ink:#13262B; --soft:#1C2D31; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0E1719; --paper:#152225; --ink:#E6EEEC; --muted:#9AAEB1; --line:#2A3B3F;
-  --brand:#6FD3A0; --brand-ink:#0E1719; --mark:#F5C84C; --mark-ink:#13262B; --soft:#1C2D31; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
-.wrap{max-width:1040px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:grid;gap:24px}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:16px 48px;display:grid;gap:24px}
 header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
-.brand{font-family:var(--display);font-weight:800;font-size:1.1rem;letter-spacing:.01em}
+.brand{font-weight:800;font-size:1.25rem;letter-spacing:-.5px;color:var(--ink)}
 .brand span{color:var(--brand)}
-.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
-.lang button{border:0;background:transparent;color:var(--ink);font:600 .85rem var(--body);padding:6px 14px;cursor:pointer}
-.lang button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
-h1{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.08;margin:0;text-wrap:balance;max-width:20ch}
-h1 mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;padding:0 .1em}
-.lede{color:var(--muted);margin:8px 0 0;max-width:60ch}
+.lang{display:flex;border:2px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{border:0;background:transparent;color:var(--ink);font:700 .85rem var(--font);padding:7px 16px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--dark);color:#fff}
+.hero{background:var(--brand);color:#fff;border-radius:32px;padding:clamp(28px,6vw,56px) clamp(20px,5vw,48px);display:grid;gap:12px}
+h1{font-weight:800;font-size:clamp(1.9rem,5.5vw,3.2rem);line-height:1.05;letter-spacing:-1px;margin:0;text-wrap:balance;max-width:20ch;color:#fff}
+h1 mark{background:var(--mark);color:var(--dark);border-radius:10px;padding:0 .18em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.lede{color:var(--hero-ink);margin:0;max-width:62ch;font-size:1.05rem}
 .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
 @media (max-width:760px){.grid{grid-template-columns:minmax(0,1fr)}}
-form{display:grid;gap:16px}
+form{display:grid;gap:16px;background:var(--soft);border-radius:24px;padding:22px}
 fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
-legend,label{font-weight:600;font-size:.92rem}
+legend,label{font-weight:700;font-size:.92rem}
 .hint{color:var(--muted);font-size:.82rem;font-weight:400}
 .seg{display:flex;flex-wrap:wrap;gap:8px}
-.seg label{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:8px 12px;cursor:pointer;font-weight:500}
+.seg label{display:flex;align-items:center;gap:6px;border:2px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 14px;cursor:pointer;font-weight:600}
+.seg label:has(input:checked){border-color:var(--brand);background:#fff;box-shadow:0 0 0 1px var(--brand) inset}
 .seg input{accent-color:var(--brand)}
 .field{display:grid;gap:6px}
 .money{position:relative}
-.money::before{content:"$";position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-family:var(--mono)}
-input[type=number]{width:100%;font:500 1.05rem var(--mono);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 12px 10px 26px;font-variant-numeric:tabular-nums}
-input.plain{padding-left:12px}
+.money::before{content:"$";position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:600}
+input[type=number]{width:100%;font:600 1.05rem var(--font);color:var(--ink);background:var(--paper);border:2px solid var(--line);border-radius:12px;padding:11px 12px 11px 28px;font-variant-numeric:tabular-nums}
+input[type=number]:focus{border-color:var(--brand)}
+input.plain{padding-left:14px}
 input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
-.receipt{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:16px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+.receipt{background:var(--paper);border:2px solid var(--line);border-radius:24px;padding:22px;display:grid;gap:16px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
 @media (max-width:760px){.receipt{position:static}}
-.eyebrow{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
-.big{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,7vw,3.2rem);line-height:1;font-variant-numeric:tabular-nums}
-.pct{display:inline-block;background:var(--mark);color:var(--mark-ink);font-weight:600;border-radius:6px;padding:2px 8px;font-size:.9rem}
+.eyebrow{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);font-weight:800}
+.big{font-weight:800;font-size:clamp(2.4rem,7vw,3.4rem);line-height:1;letter-spacing:-1px;color:var(--dark);font-variant-numeric:tabular-nums}
+.pct{display:inline-block;background:var(--mark);color:var(--dark);font-weight:800;border-radius:999px;padding:2px 10px;font-size:.9rem}
 table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-td{padding:7px 0;border-bottom:1px dashed var(--line);vertical-align:top}
-td.n{text-align:right;font-family:var(--mono);white-space:nowrap;padding-left:12px}
-tr.total td{border-bottom:0;border-top:2px solid var(--ink);font-weight:600;padding-top:10px}
+td{padding:8px 0;border-bottom:1px dashed var(--line);vertical-align:top}
+td.n{text-align:right;font-weight:600;white-space:nowrap;padding-left:12px}
+tr.total td{border-bottom:0;border-top:2px solid var(--dark);font-weight:800;padding-top:10px}
 .quarters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 @media (max-width:420px){.quarters{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.q{background:var(--soft);border-radius:8px;padding:8px 10px;display:grid;gap:2px}
-.q b{font-family:var(--mono);font-size:.95rem}
+.q{background:var(--soft);border-radius:12px;padding:9px 10px;display:grid;gap:2px}
+.q b{font-weight:800;font-size:.95rem;font-variant-numeric:tabular-nums}
 .q small{color:var(--muted);font-size:.75rem}
-.q.past{opacity:.55}
-.cta{background:var(--brand);color:var(--brand-ink);border-radius:14px;padding:20px;display:grid;gap:12px}
-.cta h2{font-family:var(--display);font-weight:800;font-size:1.35rem;margin:0;text-wrap:balance}
-.cta p{margin:0;opacity:.92}
+.q.past{opacity:.5}
+.cta{background:var(--dark);color:#fff;border-radius:32px;padding:clamp(24px,5vw,40px);display:grid;gap:12px}
+.cta h2{font-weight:800;font-size:clamp(1.4rem,4vw,2rem);letter-spacing:-.5px;margin:0;text-wrap:balance;color:#fff}
+.cta p{margin:0;color:#D6EEE2}
 .btns{display:flex;flex-wrap:wrap;gap:10px}
-.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;border-radius:999px;padding:10px 16px;background:var(--mark);color:var(--mark-ink)}
-.btn.ghost{background:transparent;color:var(--brand-ink);border:1.5px solid currentColor}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.prod{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:6px;text-decoration:none;color:var(--ink)}
-.prod b{font-family:var(--display);font-size:1.05rem}
-.prod .price{font-family:var(--mono);color:var(--brand)}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:800;border-radius:999px;padding:12px 20px;background:var(--mark);color:var(--dark)}
+.btn.ghost{background:transparent;color:#fff;border:2px solid #fff}
+.prodH{font-weight:800;letter-spacing:-.5px;margin:0;font-size:clamp(1.3rem,3.5vw,1.8rem)}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.prod{background:var(--paper);border:2px solid var(--line);border-radius:20px;padding:20px;display:grid;gap:6px;text-decoration:none;color:var(--ink);transition:border-color .15s}
+.prod:hover{border-color:var(--brand)}
+.prod b{font-size:1.05rem;font-weight:800}
+.prod .price{color:var(--brand);font-weight:800}
 .fine{color:var(--muted);font-size:.8rem;max-width:80ch}
 .fine p{margin:0 0 6px}
-@media (prefers-reduced-motion:no-preference){.big{transition:color .2s}}
 </style>
 
 <div class="wrap">
@@ -86,7 +83,7 @@ tr.total td{border-bottom:0;border-top:2px solid var(--ink);font-weight:600;padd
     </div>
   </header>
 
-  <section>
+  <section class="hero">
     <h1 data-i18n="h1">¿Cuánto debo <mark>apartar para impuestos</mark> en 2026?</h1>
     <p class="lede" data-i18n="lede">Para trabajadores independientes en Utah: 1099, Uber y Lyft, DoorDash, limpieza, construcción, freelancers. Pon tus números y ve un estimado del impuesto federal, de autoempleo y de Utah, y cuánto pagar cada trimestre.</p>
   </section>
@@ -158,7 +155,7 @@ tr.total td{border-bottom:0;border-top:2px solid var(--ink);font-weight:600;padd
   </section>
 
   <section style="display:grid;gap:12px">
-    <h2 style="font-family:var(--display);margin:0;font-size:1.3rem" data-i18n="prodH">Lleva tus números todo el año</h2>
+    <h2 class="prodH" data-i18n="prodH">Lleva tus números todo el año</h2>
     <div class="products" id="products"></div>
   </section>
 

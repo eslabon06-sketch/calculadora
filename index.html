@@ -107,8 +107,12 @@ tr.total td{border-bottom:0;border-top:2px solid var(--dark);font-weight:800;pad
         <div class="money"><input type="number" id="exp" min="0" step="100" value="6000" inputmode="decimal"></div>
       </div>
       <div class="field">
-        <label for="miles"><span data-i18n="miles">Millas de trabajo manejadas</span> <span class="hint" data-i18n="milesH">(se deducen a 72.5¢ por milla en 2026)</span></label>
-        <input type="number" id="miles" class="plain" min="0" step="100" value="8000" inputmode="decimal">
+        <label for="miles"><span data-i18n="miles">Millas de trabajo, enero a junio</span> <span class="hint" data-i18n="milesH">(se deducen a 72.5¢ por milla)</span></label>
+        <input type="number" id="miles" class="plain" min="0" step="100" value="4000" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label for="miles2"><span data-i18n="miles2">Millas de trabajo, julio a diciembre</span> <span class="hint" data-i18n="miles2H">(se deducen a 76¢ por milla; el IRS subió la tarifa el 1 de julio)</span></label>
+        <input type="number" id="miles2" class="plain" min="0" step="100" value="4000" inputmode="decimal">
       </div>
       <div class="field">
         <label for="w2"><span data-i18n="w2">Salario de otro trabajo (W-2)</span> <span class="hint" data-i18n="w2H">(opcional; 0 si no tienes)</span></label>
@@ -183,7 +187,8 @@ const CONFIG = {
 /* ================================== */
 
 const TAX = {
-  mileage: 0.725, ssBase: 184500, utRate: 0.0445,
+  mileage1: 0.725, mileage2: 0.76, /* IRS 2026: Jan 1-Jun 30 = 72.5c (IR-2025-128), Jul 1-Dec 31 = 76c (IR-2026-29) */
+  ssBase: 184500, utRate: 0.0445,
   std: {single:16100, mfj:32200, hoh:24150},
   qbiLimit: {single:201750, mfj:403500, hoh:201750},
   utBase: {single:18213, mfj:36426, hoh:27320},
@@ -200,8 +205,8 @@ function bracketTax(income, br){
   for(const [top,rate] of br){ if(income<=prev) break; tax += (Math.min(income,top)-prev)*rate; prev=top; }
   return tax;
 }
-function estimate({status,gross,exp,miles,w2,paid}){
-  const net = Math.max(0, gross - exp - miles*TAX.mileage);
+function estimate({status,gross,exp,miles,miles2,w2,paid}){
+  const net = Math.max(0, gross - exp - miles*TAX.mileage1 - (miles2||0)*TAX.mileage2);
   const seBase = net*0.9235;
   const ss = Math.max(0, Math.min(seBase, TAX.ssBase - w2))*0.124;
   const se = seBase >= 400 ? ss + seBase*0.029 : 0;
@@ -222,7 +227,8 @@ const T = {
     status:'Estado civil para la declaración',single:'Soltero',mfj:'Casado, declaración conjunta',hoh:'Cabeza de familia',
     gross:'Ingresos del año como independiente',grossH:'(todo lo que cobras: 1099-NEC, 1099-K, efectivo)',
     exp:'Gastos del negocio',expH:'(herramientas, teléfono, materiales, seguros; sin millaje)',
-    miles:'Millas de trabajo manejadas',milesH:'(se deducen a 72.5¢ por milla en 2026)',
+    miles:'Millas de trabajo, enero a junio',milesH:'(se deducen a 72.5¢ por milla)',
+    miles2:'Millas de trabajo, julio a diciembre',miles2H:'(se deducen a 76¢ por milla; el IRS subió la tarifa el 1 de julio)',
     w2:'Salario de otro trabajo (W-2)',w2H:'(opcional; 0 si no tienes)',
     wh:'Impuestos ya retenidos o pagados este año',whH:'(retención del W-2 y pagos trimestrales hechos)',
     sample:'Los números de arriba son un ejemplo. Cámbialos por los tuyos; el resultado se actualiza solo.',
@@ -241,7 +247,8 @@ const T = {
     status:'Filing status',single:'Single',mfj:'Married filing jointly',hoh:'Head of household',
     gross:'Self-employment income for the year',grossH:'(everything you collect: 1099-NEC, 1099-K, cash)',
     exp:'Business expenses',expH:'(tools, phone, supplies, insurance; not mileage)',
-    miles:'Business miles driven',milesH:'(deducted at 72.5¢ per mile in 2026)',
+    miles:'Business miles, January to June',milesH:'(deducted at 72.5¢ per mile)',
+    miles2:'Business miles, July to December',miles2H:'(deducted at 76¢ per mile; the IRS raised the rate on July 1)',
     w2:'Wages from another job (W-2)',w2H:'(optional; 0 if none)',
     wh:'Tax already withheld or paid this year',whH:'(W-2 withholding and estimated payments made)',
     sample:'The numbers above are an example. Replace them with yours; the result updates as you type.',
@@ -269,7 +276,7 @@ const num = id => Math.max(0, parseFloat($(id).value) || 0);
 
 function render(){
   const status = document.querySelector('input[name=status]:checked').value;
-  const r = estimate({status, gross:num('gross'), exp:num('exp'), miles:num('miles'), w2:num('w2'), paid:num('wh')});
+  const r = estimate({status, gross:num('gross'), exp:num('exp'), miles:num('miles'), miles2:num('miles2'), w2:num('w2'), paid:num('wh')});
   $('total').textContent = fmt(r.total);
   $('pct').textContent = Math.round(r.pct*100) + '%';
   $('o-net').textContent = fmt(r.net); $('o-se').textContent = fmt(r.se);
